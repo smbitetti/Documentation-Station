@@ -1,0 +1,4 @@
+!# /bin/sh
+#import time
+#Sleep 6
+python /home/pi/python_games/Doc/doc_jun20.py
