@@ -1,4 +1,6 @@
 #!/usr/bin/python3.4
+
+#all the libraries that need to be imported for the program
 import sys
 
 import os
@@ -13,7 +15,7 @@ import RPi.GPIO as GPIO
 import subprocess
 from subprocess import call
 
-
+#The Pin setup for the Raspberry Pi(dictates which ones are being used)
 GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(16, GPIO.IN, pull_up_down = GPIO.PUD_UP)
@@ -27,6 +29,7 @@ count = 0
 i = 0
 partners = ""
 
+#Class used for Tkinter to create the GUI-accesses the previously made roster and allows students to choose groups
 class Checkbar(Frame):
     def __init__(self, parent = None, picks = []):
         Frame.__init__(self,parent)
@@ -95,7 +98,7 @@ webcam.start()
 
 font = pygame.font.Font(None, 25)
 
-
+#Creates the list of pathways as well as the list of image names
 paths = []
 pinames = []
 comp = datetime.datetime.now().date()
@@ -105,6 +108,7 @@ hi = hi.replace(" ", "_")
 hi = hi.replace(":", "_")
 paths.append("/home/pi/Pictures/%s" %hi)
 
+#Checks to see if pathway already exists otherwise creates the new path and uploads to dropbox
 stamp = partners
 if os.path.exists(paths[count]) is False:
         os.mkdir(paths[count], 0o777);
@@ -115,7 +119,7 @@ if os.path.exists(paths[count]) is False:
 else:
         paths[count] = paths[count] + "/" + partners
         os.mkdir(paths[count], 0o777)
-
+#Function to take and save a picture
 def record(runtime):
 
         global i
@@ -234,6 +238,7 @@ while True:
                                 time.sleep(0.5)
                                 break
         
+        #Takes in input of second hidden button and uploads all files to dropbox as well as exiting program when pushed
         input_state3 = GPIO.input(13)
         
         if input_state3 == False:
@@ -259,6 +264,7 @@ while True:
 
                 sys.exit()
         
+        #third button is used to change groups which then checks date to see if that has changed-updates group
         input_state4 = GPIO.input(21)
             
         if input_state4 == False:
