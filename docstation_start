@@ -1,0 +1,5 @@
+#! /bin/sh
+Sleep 6
+print "hi" 
+sudo python /home/pi/docstation_aug.py
+
