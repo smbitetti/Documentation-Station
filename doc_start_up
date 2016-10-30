@@ -1,4 +1,0 @@
-#! /bin/sh
-#import time
-#Sleep 6
-python3 /home/pi/master.py
