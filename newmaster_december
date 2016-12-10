@@ -1,0 +1,46 @@
+#the goal of this script is to dictate whether the doc station goes into slideshow mode or phototaking mode
+
+import sys
+import os
+import pygame
+import os
+import datetime
+import time
+import RPi.GPIO as GPIO
+
+import subprocess
+from subprocess import call
+
+
+GPIO.setmode(GPIO.BCM)
+
+GPIO.setup(16, GPIO.IN, pull_up_down = GPIO.PUD_UP) #documentationn mode
+
+GPIO.setup(13, GPIO.IN, pull_up_down = GPIO.PUD_UP) #slideshow mode
+
+GPIO.setup(21, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+
+pygame.init()
+#create fullscreen display
+font = pygame.font.Font(None, 25)
+screen = pygame.display.set_mode((700, 400), 0)
+
+pygame.display.toggle_fullscreen
+screen.fill((0,0,0))
+
+choose = "Press the white button for taking photos otherwise default to slideshow mode!"
+text1 = font.render(choose, True, (255,255,255))
+cur_time = time.time()
+
+while time.time() - cur_time < 10 or input_state1 == False :
+
+                        input_state1 = GPIO.input(16)
+
+                        if input_state2 == False:
+        				        time.sleep(4)
+					              pygame.quit()
+                        os.system('python3 /home/pi/docstation_aug.py')
+    					          else:
+                  		  time.sleep(4)
+					              pygame.quit()
+                        os.system('python3 /home/pi/slideshow.py')
